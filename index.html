@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>D</title>
+    <meta charset="utf-8">
+    <!-- import the webpage's stylesheet -->
+    <link href="https://fonts.googleapis.com/css?family=Varela" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- import the webpage's javascript file -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <script src="script.js" defer></script>
+  </head>
+  <body ng-app="dPortfolio" ng-controller="myCtrl">
+
+    <img id="background" ng-src="{{bgImg}}"></img>
+
+    <div id="frontMatter" ng-if="!zoomImage">
+      <h1>{{title}}</h1>
+      <p>{{artistStatement}}</p>
+    </div>
+
+    <div id="work" ng-if="!zoomImage">
+      <div ng-repeat="w in work">
+        <h1>{{w.title}} | {{w.year}}</h1>
+        <div class="image" ng-repeat="i in w.image">
+          <img ng-click="onImageClick(i)" ng-src="{{i}}">
+        </div>
+      </div>
+    </div>
+
+    <div id="zoom" ng-if="zoomImage">
+      <h1 id="nav" ng-click="exitZoom()">{{title}}</h1>
+      <img ng-src="{{imageToZoom}}">
+    </div>
+  </body>
+</html>
